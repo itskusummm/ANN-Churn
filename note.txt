@@ -1,0 +1,44 @@
+python -m venv venv     #Create venv
+.\venv\Scripts\activate     #activate venv
+pip install -r requirements.txt         #install requirements
+pip install ipykernel                   #for jupyter notebook
+
+
+## Experiment.ipynb file
+Loads churn dataset from Churn_Modelling.csv
+Drops irrelevant columns: RowNumber, CustomerId, Surname
+Encodes Gender with LabelEncoder
+One-hot encodes Geography with OneHotEncoder
+Combines encoded geography columns back into the dataframe
+Saves preprocessing objects:
+label_encoder_gender.pkl
+one_hot_encoder_geo.pkl
+Splits data into features X and target y
+Performs train/test split with test_size=0.2
+Scales features using StandardScaler
+Saves the fitted scaler as scaler.pkl
+Builds an ANN model:
+Dense(64, relu)
+Dense(32, relu)
+Dense(1, sigmoid)
+Compiles model with adam optimizer and binary_crossentropy
+Sets up TensorBoard logging and early stopping
+Trains the model with validation on the test set
+Saves the trained model to my_model.h5
+
+## Prediction.ipynb file
+Imports tensorflow, load_model, pickle, pandas, and numpy
+Loads saved ANN model from my_model.h5
+Loads preprocessing objects:
+label_encoder_gender.pkl
+one_hot_encoder_geo.pkl
+scaler.pkl
+Creates a single example input with customer features
+Converts the example into a DataFrame
+Applies the saved one-hot encoder to Geography
+Concatenates the encoded geography columns and removes the original Geography
+Transforms Gender using the saved label encoder
+Scales the final input features using the saved scaler
+Runs the model prediction on the scaled input
+Extracts the predicted churn probability
+Prints whether the customer is likely to churn using a 0.5 threshold

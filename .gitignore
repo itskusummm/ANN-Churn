@@ -1,0 +1,10 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Logging output (plain, rotated, dated suffixes, common dirs)
+*.log
+*.log.*
+logs/
+log/
