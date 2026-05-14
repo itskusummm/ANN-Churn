@@ -3,9 +3,6 @@ tensorboard
 pandas
 numpy
 scikit-learn
-tensorboard
-matplotlib
-seaborn
 streamlit
 scipy
-pickle
+
